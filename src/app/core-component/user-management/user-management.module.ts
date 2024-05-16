@@ -1,6 +1,6 @@
 import { NgModule, importProvidersFrom } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+// import { ReactiveFormsModule } from '@angular/forms';
 import { UserManagementRoutingModule } from './user-management-routing.module';
 import { UserManagementComponent } from './user-management.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
@@ -18,7 +18,8 @@ import { PermissionsComponent } from './permissions/permissions.component';
     RolesPermissionsComponent,
     // AddUserComponent,
     UsersComponent,
-    PermissionsComponent
+    PermissionsComponent,
+    // ReactiveFormsModule
   ],
   imports: [
     CommonModule,
