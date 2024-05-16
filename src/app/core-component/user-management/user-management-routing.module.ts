@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserManagementComponent } from './user-management.component';
 import { RolesPermissionsComponent } from './roles-permissions/roles-permissions.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { AddUserComponent } from './add-user/add-user.component';
 import { UsersComponent } from './users/users.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'delete-account',
         component: DeleteAccountComponent,
+      },
+      {
+        path: 'add-users',
+        component: AddUserComponent,
       },
       {
         path: 'users',
