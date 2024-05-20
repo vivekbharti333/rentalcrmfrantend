@@ -38,4 +38,20 @@ export class UserManagementService {
   }
 
 
+  saveUserDetails(user:any): Observable<any> {
+    user.firstname
+    let request: any = {
+      payload: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        token: '',
+        createdBy: 'MAINADMIN',
+        superadminId: 'MAINADMIN',
+        
+      }
+    };
+    return this.http.post<any>("http://192.168.29.119:8080/rentalcrm/userRegistration", request);
+  }
+
+
 }
