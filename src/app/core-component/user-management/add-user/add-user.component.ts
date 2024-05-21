@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms'; // Import FormsModule and NgForm
 import { SidebarService, routes } from 'src/app/core/core.index'; // Ensure correct import path
 import { UserManagementService } from '../user-management.service';
-import { Toast } from 'primeng/toast';
+// import { ToastrService } from 'ngx-toastr';
 
 interface data {
   value: string;
@@ -42,6 +42,7 @@ export class AddUserComponent {
 
   constructor(private sidebar: SidebarService,
     private userManagementService: UserManagementService,
+    // private toastr: ToastrService,
   ) {}
 
   public routes = routes;
