@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { Constant } from './services/constant';
 // import { UserDetails, UserDetailsRequest } from '../interface/user-management';
 // import { AuthenticationService } from './services/authentication-service.service';
@@ -38,16 +38,33 @@ export class UserManagementService {
   }
 
 
-  saveUserDetails(user:any): Observable<any> {
+  saveUserDetails(user: any): Observable<any> {
     user.firstname
     let request: any = {
       payload: {
+        userPicture: '',
         firstName: user.firstName,
         lastName: user.lastName,
+        emailId: user.emailId,
+        roleType: user.roleType,
+        mobileNo: user.mobileNo,
+        dob: user.dob,
+        alternateMobile: user.alternateMobile,
+        idDocumentType: user.idDocumentType,
+        idDocumentPicture: user.idDocumentPicture,
+        panNumber: user.panNumber,
+        
+        emergencyContactRelation1: user.emergencyContactRelation1,
+        emergencyContactName1: user.emergencyContactName1,
+        emergencyContactNo1: user.emergencyContactNo1,
+        emergencyContactRelation2: user.emergencyContactRelation2,
+        emergencyContactName2: user.emergencyContactName2,
+        emergencyContactNo2: user.emergencyContactNo2,
+
         token: '',
         createdBy: 'MAINADMIN',
         superadminId: 'MAINADMIN',
-        
+
       }
     };
     return this.http.post<any>("http://192.168.29.119:8080/rentalcrm/userRegistration", request);

@@ -87,7 +87,7 @@
     <div class="card-body">
       <div class="new-employee-field">
         <div class="card-title-head">
-          <h6><span><i  class=" feather icon-info feather-edit"></i></span>Employee Information</h6>
+          <h6><span><i  class=" feather icon-info feather-edit"></i></span>Personal Information</h6>
         </div>
         <div class="profile-pic-upload">
           <div class="profile-pic">
@@ -117,8 +117,11 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="text" class="form-control" name="emailId" [(ngModel)]="user.emailId" required>
+              <!-- <label class="form-label">Email</label>
+              <input type="text" class="form-control" name="emailId" [(ngModel)]="user.emailId" required> -->
+              <label class="form-label">Role</label>
+              <input type="text" class="form-control" name="roleType" [(ngModel)]="user.roleType" required>
+
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -134,91 +137,22 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Email Id</label>
+              <input type="text" class="form-control" name="emailId" [(ngModel)]="user.emailId" required> 
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
             <div class="input-blocks">
               <label>Date of Birth</label>
-
               <div class="input-groupicon calender-input date-input1">
                 <i  class="feather icon-calendar info-img"></i>
-                <input type="text" class="datetimepicker form-control" placeholder="Select Date" bsDatepicker container=".date-input1">
+                <input type="date" class="datetimepicker form-control" placeholder="Select Date" name="dob" [(ngModel)]="user.dob">
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">Gender</label>
-              <!-- <mat-select [(ngModel)]="selectedValue1" [ngModelOptions]="{standalone: true}"
-                class="select" placeholder="Male">
-                @for (data of selectedList1; track data) {
-                  <mat-option [value]="data.value">
-                    {{data.value}}
-                  </mat-option>
-                }
-              </mat-select> -->
-            </div>
           </div> 
-           <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">Nationality</label>
-              <!-- <mat-select [(ngModel)]="selectedValue2" [ngModelOptions]="{standalone: true}"
-                class="select" placeholder="United Kingdom">
-                @for (data of selectedList2; track data) {
-                  <mat-option [value]="data.value">
-                    {{data.value}}
-                  </mat-option>
-                }
-              </mat-select> -->
-            </div>
-          </div> 
-          <div class="col-lg-4 col-md-6">
-            <div class="input-blocks">
-              <label>Joining Date</label>
-              <div class="input-groupicon calender-input date-input2">
-                <i  class="feather icon-calendar info-img"></i>
-                <input type="text" class="datetimepicker form-control" placeholder="Select Date" bsDatepicker container=".date-input2">
-              </div>
-            </div>
-          </div>
-          
-          <!-- <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">Department</label>
-              <mat-select [(ngModel)]="selectedValue4" [ngModelOptions]="{standalone: true}"
-                class="select" placeholder="UI/UX">
-                @for (data of selectedList4; track data) {
-                  <mat-option [value]="data.value">
-                    {{data.value}}
-                  </mat-option>
-                }
-              </mat-select>
-            </div>
-          </div> -->
-          <!-- <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">Designation</label>
-              <mat-select [(ngModel)]="selectedValue5" [ngModelOptions]="{standalone: true}"
-                class="select" placeholder="Designer">
-                @for (data of selectedList5; track data) {
-                  <mat-option [value]="data.value">
-                    {{data.value}}
-                  </mat-option>
-                }
-              </mat-select>
-            </div>
-          </div> -->
-          <!-- <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">Blood Group</label>
-              <mat-select [(ngModel)]="selectedValue6" [ngModelOptions]="{standalone: true}"
-                class="select" placeholder="O positive">
-                @for (data of selectedList6; track data) {
-                  <mat-option [value]="data.value">
-                    {{data.value}}
-                  </mat-option>
-                }
-              </mat-select>
-            </div>
-          </div> -->
         </div>
+
         <div class="other-info">
           <div class="card-title-head">
             <h6><span><i  class="feather icon-info feather-edit"></i></span>Other Information</h6>
@@ -226,18 +160,41 @@
           <div class="row">
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
-                <label class="form-label">Emergency No 1</label>
-                <input type="text" class="form-control">
+                <label class="form-label">emergencyContactRelation1</label>
+                <input type="text" class="form-control" name="emergencyContactRelation1" [(ngModel)]="user.emergencyContactRelation1" required> 
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
-                <label class="form-label">Emergency No 2</label>
-                <input type="text" class="form-control">
+                <label class="form-label">emergencyContactName1</label>
+                <input type="text" class="form-control" name="emergencyContactName1" [(ngModel)]="user.emergencyContactName1" required> 
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
+              <div class="mb-3">
+                <label class="form-label">emergencyContactNo1</label>
+                <input type="text" class="form-control" name="emergencyContactNo1" [(ngModel)]="user.emergencyContactNo1" required> 
+              </div>
             </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="mb-3">
+                <label class="form-label">emergencyContactRelation2</label>
+                <input type="text" class="form-control" name="emergencyContactRelation2" [(ngModel)]="user.emergencyContactRelation2" required> 
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="mb-3">
+                <label class="form-label">emergencyContactName2</label>
+                <input type="text" class="form-control" name="emergencyContactName2" [(ngModel)]="user.emergencyContactName2" required> 
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="mb-3">
+                <label class="form-label">emergencyContactNo2</label>
+                <input type="text" class="form-control" name="emergencyContactNo2" [(ngModel)]="user.emergencyContactNo2" required> 
+              </div>
+            </div>
+            
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
                 <label class="form-label">Address</label>

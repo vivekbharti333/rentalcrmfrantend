@@ -29,7 +29,15 @@ export class AddUserComponent {
     userCode: '',
 	  idDocumentType: '',
 	  idDocumentPicture: '',
-	  panNumber: ''
+	  panNumber: '',
+    dob:'',
+    emergencyContactRelation1: '',
+    emergencyContactName1: '',
+    emergencyContactNo1: '',
+    emergencyContactRelation2: '',
+    emergencyContactName2: '',
+    emergencyContactNo2: '',
+
   };
 
   constructor(private sidebar: SidebarService,
@@ -94,7 +102,7 @@ export class AddUserComponent {
         next: (response: any) => {
           if (response['responseCode'] == '200') {
             if (response['payload']['respCode'] == '200') {
-              // this.toastr.success(response['payload']['respMesg'], response['payload']['respCode']);
+              //  this.toastr.success(response['payload']['respMesg'], response['payload']['respCode']);
              // form.reset();
               // this.createForms();
               // this.isLoading = false;
