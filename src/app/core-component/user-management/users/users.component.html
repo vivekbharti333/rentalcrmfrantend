@@ -33,11 +33,7 @@
     </li>
   </ul>
   <div class="page-btn">
-    <a href="javascript:void(0);" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-units"><i
-    class="feather icon-plus-circle me-2"></i>Add New User</a>
-    <a routerLink="add-users">Home</a>
-    <a [routerLink] = "routes.addusers" class="btn btn-added"><i class="feather icon-plus-circle me-2"></i>Add New
-      Employee</a> 
+    <a [routerLink] = "routes.addusers" class="btn btn-added"><i class="feather icon-plus-circle me-2"></i>Add New User</a> 
   </div>
 </div>
 
@@ -131,10 +127,10 @@
                   <span class="checkmarks"></span>
                 </label>
               </th> -->
+            <th></th>
             <th mat-sort-header="userName">Full Name</th>
-            <th mat-sort-header="userName">Userid</th>
+            <th mat-sort-header="loginId">Userid</th>
             <th mat-sort-header="phone">Phone</th>
-            <th mat-sort-header="email">email</th>
             <th mat-sort-header="role">Role</th>
             <th mat-sort-header="createdOn">Created On</th>
             <th mat-sort-header="status">Status</th>
@@ -150,34 +146,27 @@
                     <span class="checkmarks"></span>
                   </label>
                 </td> -->
-              <td>
-                <div class="userimgname">
-                  <a href="javascript:void(0);" class="userslist-img bg-img">
-                    <img [src]="data.img" alt="product">
-                  </a>
-                  <div>
-                    <a href="javascript:void(0);">{{data.firstName}} {{data.lastName}}</a>
+                <td>
+                  <div class="userimgname">
+                    <a href="javascript:void(0);" class="userslist-img bg-img">
+                      <img src= "{{data.userPicture}}" alt="user image" style="border-radius: 50%;"></a>
                   </div>
-                </div>
-              </td>
+                </td>
+              <td>{{data.firstName}} {{data.lastName}} </td>
               <td>{{data.loginId}}</td>
               <td>{{data.lastName}}</td>
               <td>{{data.roleType}}</td>
-              <td>{{data.roleType}}</td>
+              <td>{{data.createdAt | date: 'dd-MM-yyyy | HH:mm'}}</td>
+              <!-- <td>{{data.status}}</td> -->
+            
               <td><span class="badge"
-              [ngClass]="{'badge-linesuccess': data.status === 'Active', 'badge-linedanger': data.status === 'Inactive'}">{{data.status}}</span>
-            </td>
+              [ngClass]="{'badge-linesuccess': data.status === 'ACTIVE', 'badge-linedanger': data.status === 'INACTIVE'}">{{data.status}}</span>
+            </td> 
             <td class="action-table-data">
               <div class="edit-delete-action">
-                <a class="me-2 p-2 mb-0" href="javascript:void(0);">
-                  <i class="feather icon-eye action-eye"></i>
-                </a>
-                <a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-                  <i class="feather icon-edit feather-edit"></i>
-                </a>
-                <a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);" (click)=confirmColor()>
-                  <i class="feather icon-trash-2 feather-trash-2"></i>
-                </a>
+                <a class="me-2 p-2 mb-0" href="javascript:void(0);"><i class="feather icon-eye action-eye"></i> </a>
+                <a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units"> <i class="feather icon-edit feather-edit"></i></a>
+                <a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);" (click)=confirmColor()> <i class="feather icon-trash-2 feather-trash-2"></i></a>
               </div>
             </td>
           </tr>

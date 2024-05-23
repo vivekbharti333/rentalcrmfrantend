@@ -37,8 +37,36 @@ export class AddUserComponent {
     emergencyContactRelation2: '',
     emergencyContactName2: '',
     emergencyContactNo2: '',
-
+    // addressList: [
+    //   this.createAddress(),
+    //   this.createAddress()
+    // ]
+    addressList: [
+      { addressType: 'CURRENT', addressLine: '', landmark: '', district: '', city: '', state: '', country: 'INDIA', pincode: '' },
+      { addressType: 'PARMANENT', addressLine: '', landmark: '', district: '', city: '', state: '', country: 'INDIA', pincode: '' }
+    ]
   };
+
+  // createAddress() {
+  //   return {
+  //     addressType: '',
+  //     addressLine: '',
+  //     landmark: '',
+  //     district: '',
+  //     city: '',
+  //     state: '',
+  //     country: 'INDIA',
+  //     pincode: ''
+  //   };
+  // }
+
+  // addItem() {
+  //   this.user.addressList.push(this.createAddress());
+  // }
+
+  // removeItem(index: number) {
+  //   this.user.addressList.splice(index, 1);
+  // }
 
   constructor(private sidebar: SidebarService,
     private userManagementService: UserManagementService,
@@ -75,6 +103,13 @@ export class AddUserComponent {
   ];
   selectedList7: data[] = [{ value: 'United Kingdom' }, { value: 'USA' }];
 
+  public roleTypes = [
+    { id: 1, name: 'Admin' },
+    { id: 2, name: 'User' },
+    { id: 3, name: 'Guest' }
+  ];
+
+
   submitUserForm12(form: NgForm) {
     if (form.valid) {
       this.userManagementService.saveUserDetails(this.user).subscribe(
@@ -92,9 +127,25 @@ export class AddUserComponent {
     }
   }
 
+  onFileSelected(event: any) {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        const base64String = event.target.result.split(',')[1]; // Get the base64 part
+
+        // Set the base64 string to the userPicture field
+        this.user.userPicture = "data:image/jpeg;base64,"+base64String;
+        alert("base64 : "+this.user.userPicture);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  }
+
   submitUserForm() {
     // this.isLoading = true;
-    alert(this.user.firstName);
+    alert(this.user.userPicture);
     // alert(form);
     // alert(form.value);
     

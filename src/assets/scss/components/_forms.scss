@@ -1,5 +1,5 @@
 .form-control {
-  border-color: $input-border;
+  border-color: rgb(130, 122, 122);
   color: $text-color;
   background-color: $form-control-bg;
   font-size: 0.875rem;
@@ -10,8 +10,8 @@
 
   &:focus {
     box-shadow: none;
-    border-color: $input-border;
-    background-color: $white;
+    border-color: black;
+    background-color: rgb(239, 239, 239);
     box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.05);
     color: $text-color;
   }
@@ -27,13 +27,14 @@
 }
 .form-label {
   font-size: $font-size-14;
-  font-weight: $font-weight-semibold;
-  color: $text-color;
+  font-weight: bold;
+  color: black;
   margin-bottom: 8px;
 }
 
 .form-text {
-  color: $text-muted;
+  // color: $text-muted;
+  color: rgb(130, 122, 122);
 }
 
 .form-control-light {

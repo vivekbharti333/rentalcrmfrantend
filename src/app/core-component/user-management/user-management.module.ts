@@ -1,4 +1,4 @@
-import { NgModule, importProvidersFrom } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserManagementRoutingModule } from './user-management-routing.module';
@@ -9,6 +9,7 @@ import { RolesPermissionsComponent } from './roles-permissions/roles-permissions
 import { UsersComponent } from './users/users.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [

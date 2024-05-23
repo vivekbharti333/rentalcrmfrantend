@@ -24,78 +24,26 @@
 </div>
 
 
-<form #userForm="ngForm" (ngSubmit)="submitUserForm()">
-  <div class="card">
-    <div class="card-body">
-      <div class="new-employee-field">
-        <div class="card-title-head">
-          <h6><span><i class="feather icon-info feather-edit"></i></span>User Information</h6>
-        </div>
-        <div class="profile-pic-upload">
-          <div class="profile-pic">
-            <span><i  class="feather icon-plus-circle plus-down-add"></i> Profile Photo</span>
-          </div>
-          <div class="input-blocks mb-0">
-            <div class="image-upload mb-0">
-              <input type="file">
-              <div class="image-uploads">
-                <h4>Change Image</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">First Name</label>
-              <input type="text" class="form-control" name="firstName" [(ngModel)]="user.firstName" required>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">Last Name</label>
-              <input type="text" class="form-control" name="lastname" [(ngModel)]="user.lastName" required>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">Email id</label>
-              <input type="text" class="form-control" name="emailId" [(ngModel)]="user.emailId" required>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="mb-3">
-              <label class="form-label">Last Name</label>
-              <input type="text" class="form-control" name="mobileNo" [(ngModel)]="user.mobileNo" required>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="text-end mb-3">
-    <button type="submit" class="btn btn-submit" [disabled]="!userForm.form.valid">Save User</button>
-  </div>
-</form>
-
-
-
 
 <form #userForm="ngForm" (ngSubmit)="submitUserForm()">
   <div class="card">
     <div class="card-body">
       <div class="new-employee-field">
         <div class="card-title-head">
-          <h6><span><i  class=" feather icon-info feather-edit"></i></span>Personal Information</h6>
+          <h6><span><i class=" feather icon-info feather-edit"></i></span>Personal Information</h6>
         </div>
         <div class="profile-pic-upload">
           <div class="profile-pic">
-            <span><i  class="feather icon-plus-circle plus-down-add"></i> Profile Photo</span>
+            <ng-container *ngIf="!user.userPicture; else showImage">
+              <span><i class="feather icon-plus-circle plus-down-add"></i> Profile Photo</span>
+            </ng-container>
+            <ng-template #showImage>
+              <img [src]="user.userPicture" alt="Profile Picture" class="uploaded-profile-pic" />
+            </ng-template>
           </div>
           <div class="input-blocks mb-0">
             <div class="image-upload mb-0">
-              <input type="file">
+              <input type="file" class="form-control" id="userPicture" (change)="onFileSelected($event)">
               <div class="image-uploads">
                 <h4>Change Image</h4>
               </div>
@@ -117,11 +65,19 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="mb-3">
-              <!-- <label class="form-label">Email</label>
-              <input type="text" class="form-control" name="emailId" [(ngModel)]="user.emailId" required> -->
               <label class="form-label">Role</label>
-              <input type="text" class="form-control" name="roleType" [(ngModel)]="user.roleType" required>
-
+               <select id="roleType" class="form-control" [(ngModel)]="user.roleType" name="roleType" required>
+                <option *ngFor="let role of roleTypes" [value]="role.name">{{ role.name }}</option>
+              </select> 
+               <!-- <mat-select [(ngModel)]="selectedValue1" [ngModelOptions]="{standalone: true}"
+                class="select" placeholder="Male">
+                @for (data of selectedList1; track data) {
+                  <mat-option [value]="data.value">
+                    {{data.value}}
+                  </mat-option> 
+                }
+              </mat-select>  -->
+              
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -133,143 +89,160 @@
           <div class="col-lg-4 col-md-6">
             <div class="mb-3">
               <label class="form-label">Alternate Mobile Number</label>
-              <input type="text" class="form-control" name="alternateMobile" [(ngModel)]="user.alternateMobile" required>
+              <input type="text" class="form-control" name="alternateMobile" [(ngModel)]="user.alternateMobile"
+                required>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="mb-3">
               <label class="form-label">Email Id</label>
-              <input type="text" class="form-control" name="emailId" [(ngModel)]="user.emailId" required> 
+              <input type="text" class="form-control" name="emailId" [(ngModel)]="user.emailId" required>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
+            <label class="form-label">Date of Birth</label>
             <div class="input-blocks">
-              <label>Date of Birth</label>
               <div class="input-groupicon calender-input date-input1">
-                <i  class="feather icon-calendar info-img"></i>
-                <input type="date" class="datetimepicker form-control" placeholder="Select Date" name="dob" [(ngModel)]="user.dob">
+                <i class="feather icon-calendar info-img"></i>
+                <input type="date" class="datetimepicker form-control" placeholder="Select Date" name="dob"[(ngModel)]="user.dob">
               </div>
             </div>
-          </div> 
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="input-blocks">
+              <label>Date of Birth</label>
+
+              <div class="input-groupicon calender-input date-input1">
+                <i  class="feather icon-calendar info-img"></i>
+                <input type="text" class="datetimepicker form-control" placeholder="Select Date" bsDatepicker container=".date-input1">
+              </div>
+            </div>
+          </div>
+
+
         </div>
 
         <div class="other-info">
           <div class="card-title-head">
-            <h6><span><i  class="feather icon-info feather-edit"></i></span>Other Information</h6>
+            <h6><span><i class="feather icon-info feather-edit"></i></span>Emergency Contact Information</h6>
           </div>
           <div class="row">
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
-                <label class="form-label">emergencyContactRelation1</label>
-                <input type="text" class="form-control" name="emergencyContactRelation1" [(ngModel)]="user.emergencyContactRelation1" required> 
+                <label class="form-label">Emergency Contact Relation 1</label>
+                <input type="text" class="form-control" name="emergencyContactRelation1"
+                  [(ngModel)]="user.emergencyContactRelation1" required>
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
-                <label class="form-label">emergencyContactName1</label>
-                <input type="text" class="form-control" name="emergencyContactName1" [(ngModel)]="user.emergencyContactName1" required> 
+                <label class="form-label">Emergency Contact Name 1</label>
+                <input type="text" class="form-control" name="emergencyContactName1"
+                  [(ngModel)]="user.emergencyContactName1" required>
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
-                <label class="form-label">emergencyContactNo1</label>
-                <input type="text" class="form-control" name="emergencyContactNo1" [(ngModel)]="user.emergencyContactNo1" required> 
+                <label class="form-label">Emergency Contact No 1</label>
+                <input type="text" class="form-control" name="emergencyContactNo1"
+                  [(ngModel)]="user.emergencyContactNo1" required>
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
-                <label class="form-label">emergencyContactRelation2</label>
-                <input type="text" class="form-control" name="emergencyContactRelation2" [(ngModel)]="user.emergencyContactRelation2" required> 
+                <label class="form-label">Emergency Contact Relation 2</label>
+                <input type="text" class="form-control" name="emergencyContactRelation2"
+                  [(ngModel)]="user.emergencyContactRelation2" required>
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
-                <label class="form-label">emergencyContactName2</label>
-                <input type="text" class="form-control" name="emergencyContactName2" [(ngModel)]="user.emergencyContactName2" required> 
+                <label class="form-label">Emergency Contact Name 2</label>
+                <input type="text" class="form-control" name="emergencyContactName2"
+                  [(ngModel)]="user.emergencyContactName2" required>
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="mb-3">
-                <label class="form-label">emergencyContactNo2</label>
-                <input type="text" class="form-control" name="emergencyContactNo2" [(ngModel)]="user.emergencyContactNo2" required> 
-              </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">Address</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <!-- <div class="col-lg-4 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">Country</label>
-                <mat-select [(ngModel)]="selectedValue7" [ngModelOptions]="{standalone: true}"
-                  class="select" placeholder="United Kingdom">
-                  @for (data of selectedList7; track data) {
-                    <mat-option [value]="data.value">
-                      {{data.value}}
-                    </mat-option>
-                  }
-                </mat-select>
-              </div>
-            </div> -->
-            <div class="col-lg-4 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">State</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">City</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="mb-3">
-                <label class="form-label">Zipcode</label>
-                <input type="text" class="form-control">
+                <label class="form-label">Emergency Contact No 2</label>
+                <input type="text" class="form-control" name="emergencyContactNo2"
+                  [(ngModel)]="user.emergencyContactNo2" required>
               </div>
             </div>
           </div>
         </div>
-        <div class="pass-info">
-          <div class="card-title-head">
-            <h6><span><i class="feather icon-info feather-edit"></i></span>Password</h6>
+
+
+        <div class="other-info">
+          
+          <div *ngFor="let address of user.addressList; let i = index">
+            <div class="card-title-head">
+              <!-- <h6><span><i class="feather icon-info feather-edit"></i></span>Address</h6> -->
+              <h6 *ngIf="i === 0"><span><i class="feather icon-info feather-edit"></i></span>Current Address</h6>
+              <h6 *ngIf="i === 1"><span><i class="feather icon-info feather-edit"></i></span>Parmanent Address</h6>
+            
+            </div>
+            
+            <div *ngIf="i < 2"> <!-- This line ensures that only the first two addresses are displayed -->
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="addressLine{{i}}">Address Line</label>
+                    <input type="text" class="form-control" id="addressLine{{i}}" name="addressLine{{i}}"
+                      [(ngModel)]="address.addressLine">
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="landmark{{i}}">Landmark</label>
+                    <input type="text" class="form-control" id="landmark{{i}}" name="landmark{{i}}"
+                      [(ngModel)]="address.landmark">
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="district{{i}}">District</label>
+                    <input type="text" class="form-control" id="district{{i}}" name="district{{i}}"
+                      [(ngModel)]="address.district">
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="city{{i}}">City</label>
+                    <input type="text" class="form-control" id="city{{i}}" name="city{{i}}" [(ngModel)]="address.city">
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="state{{i}}">State</label>
+                    <input type="text" class="form-control" id="state{{i}}" name="state{{i}}" [(ngModel)]="address.state">
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="country{{i}}">Country</label>
+                    <input type="text" class="form-control" id="country{{i}}" name="country{{i}}"
+                      [(ngModel)]="address.country" value="INDIA" readonly>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="pincode{{i}}">Pincode</label>
+                    <input type="text" class="form-control" id="pincode{{i}}" name="pincode{{i}}"
+                      [(ngModel)]="address.pincode">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <!-- <div class="row">
-            <div class="col-lg-4 col-md-6">
-              <div class="input-blocks mb-md-0 mb-sm-3">
-                <label>Password</label>
-                <div class="pass-group">
-                  <input [type]="password[1] ? 'text' : 'password' " class="pass-input" value="1234">
-                  <span class="fas toggle-password"
-                    [ngClass]=" password[1] ? 'fa-eye' : 'fa-eye-slash'"
-                  (click)="togglePassword(1)"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="input-blocks mb-0">
-                <label>Confirm Password</label>
-                <div class="pass-group">
-                  <input [type]="password[2] ? 'text' : 'password'" class="pass-inputa" value="1234">
-                  <span class="fas toggle-password"
-                    [ngClass]="password[2] ? 'fa-eye' : 'fa-eye-slash'"
-                  (click)="togglePassword(2)"></span>
-                </div>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
   </div>
-  <!-- /product list -->
+
 
   <div class="text-end mb-3">
-    <button type="button" class="btn btn-cancel me-2">Cancel</button>
-    <button type="submit" class="btn btn-submit">Save Product</button>
+    <button type="submit" class="btn btn-submit" [disabled]="!userForm.form.valid">Save User</button>
   </div>
 </form>
