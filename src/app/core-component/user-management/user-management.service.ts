@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { Constant } from './services/constant';
+import { Constant } from 'src/app/core/constant/constants';
 // import { UserDetails, UserDetailsRequest } from '../interface/user-management';
 // import { AuthenticationService } from './services/authentication-service.service';
 
@@ -34,7 +34,8 @@ export class UserManagementService {
         superadminId: 'MAINADMIN',
       }
     };
-    return this.http.post<any>("http://192.168.29.119:8080/rentalcrm/getUserDetails", request);
+    return  this.http.post<any>(Constant.Site_Url+"getUserDetails",request);
+
   }
 
 
@@ -42,7 +43,7 @@ export class UserManagementService {
     user.firstname
     let request: any = {
       payload: {
-        userPicture: '',
+        userPicture: user.userPicture,
         firstName: user.firstName,
         lastName: user.lastName,
         emailId: user.emailId,
@@ -60,6 +61,7 @@ export class UserManagementService {
         emergencyContactRelation2: user.emergencyContactRelation2,
         emergencyContactName2: user.emergencyContactName2,
         emergencyContactNo2: user.emergencyContactNo2,
+        addressList: user.addressList,
 
         token: '',
         createdBy: 'MAINADMIN',
@@ -67,7 +69,7 @@ export class UserManagementService {
 
       }
     };
-    return this.http.post<any>("http://192.168.29.119:8080/rentalcrm/userRegistration", request);
+    return  this.http.post<any>(Constant.Site_Url+"userRegistration",request);
   }
 
 
