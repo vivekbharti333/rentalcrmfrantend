@@ -67,7 +67,7 @@
             <div class="mb-3">
               <label class="form-label">Role</label>
                <select id="roleType" class="form-control" [(ngModel)]="user.roleType" name="roleType" required>
-                <option *ngFor="let role of roleTypes" [value]="role.name">{{ role.name }}</option>
+                <option class="form-control" *ngFor="let role of roleTypes" [value]="role.name">{{ role.name }}</option>
               </select> 
                <!-- <mat-select [(ngModel)]="selectedValue1" [ngModelOptions]="{standalone: true}"
                 class="select" placeholder="Male">
@@ -108,19 +108,6 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="input-blocks">
-              <label>Date of Birth</label>
-
-              <div class="input-groupicon calender-input date-input1">
-                <i  class="feather icon-calendar info-img"></i>
-                <input type="text" class="datetimepicker form-control" placeholder="Select Date" bsDatepicker container=".date-input1">
-              </div>
-            </div>
-          </div>
-
-
         </div>
 
         <div class="other-info">

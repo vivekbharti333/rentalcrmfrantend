@@ -163,11 +163,13 @@ export class AddUserComponent {
         next: (response: any) => {
           if (response['responseCode'] == '200') {
             if (response['payload']['respCode'] == '200') {
+              alert(response['payload']['respMesg']);
               //  this.toastr.success(response['payload']['respMesg'], response['payload']['respCode']);
              // form.reset();
               // this.createForms();
               // this.isLoading = false;
             } else {
+              alert(response['payload']['respMesg']);
               // this.toastr.error(response['payload']['respMesg'], response['payload']['respCode']);
               // this.isLoading = false;
             }
