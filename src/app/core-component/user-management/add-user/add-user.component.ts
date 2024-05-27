@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms'; // Import FormsModule and NgForm
-import { SidebarService, routes } from 'src/app/core/core.index'; // Ensure correct import path
+import { SidebarService } from 'src/app/core/core.index'; // Ensure correct import path
 import { UserManagementService } from '../user-management.service';
-// import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
+import { routes } from 'src/app/core/helpers/routes';
+import { ToastrService } from 'ngx-toastr';
+
 
 interface data {
   value: string;
@@ -14,9 +17,13 @@ interface data {
   standalone: true,
   imports: [CommonModule, FormsModule], // Add FormsModule here
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.scss']
+  styleUrls: ['./add-user.component.scss'],
+  providers: [MessageService],
 })
 export class AddUserComponent {
+
+  public routes = routes;
+
   public user = {
     userPicture: '',
     firstName: '',
@@ -40,12 +47,14 @@ export class AddUserComponent {
 
   };
 
-  constructor(private sidebar: SidebarService,
+  constructor(
+    private sidebar: SidebarService,
     private userManagementService: UserManagementService,
-    // private toastr: ToastrService,
+    private messageService: MessageService,
+    // private toastr: ToastrService
   ) {}
 
-  public routes = routes;
+  
   public selectedValue1 = '';
   public selectedValue2 = '';
   public selectedValue3 = '';
@@ -127,5 +136,16 @@ export class AddUserComponent {
   toggleCollapse() {
     this.sidebar.toggleCollapse();
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  show() {
+   
+    this.messageService.add({
+      key: 'myKey1', // Referencing the key
+      severity: 'info',
+      summary: 'Info',
+      detail: 'Updated toast message',
+      life: 5000
+    });
   }
 }
