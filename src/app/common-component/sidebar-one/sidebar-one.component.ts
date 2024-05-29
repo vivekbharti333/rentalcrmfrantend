@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarService, routes } from 'src/app/core/core.index';
 import { NavigationEnd, Router, Event as RouterEvent } from '@angular/router';
 import { url } from 'src/app/shared/model/sidebar.model';
@@ -14,19 +14,17 @@ interface SubMenu {
   showSubRoute: boolean;
 }
 
-
 @Component({
   selector: 'app-sidebar-one',
   templateUrl: './sidebar-one.component.html',
   styleUrls: ['./sidebar-one.component.scss'],
 })
-export class SidebarOneComponent {
+export class SidebarOneComponent implements OnInit {
   public routes = routes;
   base = '';
   page = '';
   currentUrl = '';
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public side_bar_data: Array<any> = [];
 
   constructor(
@@ -40,7 +38,10 @@ export class SidebarOneComponent {
       }
     });
     this.getRoutes(this.router);
-    this.side_bar_data = this.sidebar.sidebarData1;
+  }
+
+  ngOnInit(): void {
+    this.side_bar_data = this.sidebar.getFilteredSidebarData();
   }
 
   private getRoutes(route: url): void {
@@ -51,7 +52,7 @@ export class SidebarOneComponent {
   }
 
   public miniSideBarMouseHover(position: string): void {
-    if (position == 'over') {
+    if (position === 'over') {
       this.sidebar.expandSideBar.next(true);
     } else {
       this.sidebar.expandSideBar.next(false);
@@ -84,7 +85,7 @@ export class SidebarOneComponent {
       this.openMenuItem = menu;
     }
   }
-  
+
   openSubmenuOne(subMenus: SubMenu[]): void {
     if (this.openSubmenuOneItem === subMenus) {
       this.openSubmenuOneItem = null;
@@ -96,9 +97,11 @@ export class SidebarOneComponent {
   multiLevelOne() {
     this.multiLevel1 = !this.multiLevel1;
   }
+
   multiLevelTwo() {
     this.multiLevel2 = !this.multiLevel2;
   }
+
   multiLevelThree() {
     this.multiLevel3 = !this.multiLevel3;
   }

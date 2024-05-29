@@ -12,6 +12,7 @@ export class SigninComponent {
   constructor(private router: Router) {}
 
   navigation() {
+    localStorage.setItem('menuPermission', JSON.stringify(['admindb', 'admindbn', 'usermang', 'usermang1']));
     this.router.navigate([routes.adminDashboard])
   }
   public password : boolean[] = [false];
@@ -19,4 +20,5 @@ export class SigninComponent {
   public togglePassword(index: number){
     this.password[index] = !this.password[index]
   }
+
 }
