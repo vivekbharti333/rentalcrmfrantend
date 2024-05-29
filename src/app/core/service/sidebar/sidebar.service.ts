@@ -67,8 +67,6 @@ export class SidebarService {
         .filter(menuItem => menuItem.subMenus.length > 0),
     }));
   }
-
-  // public permission = ['admindb','admindbn','usermang','usermang1'];
   
 
   public sidebarData1 = [
