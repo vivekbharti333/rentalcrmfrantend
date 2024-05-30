@@ -10,6 +10,7 @@ import { UsersComponent } from './users/users.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core'; 
+// import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MatOptionModule } from '@angular/material/core';
     sharedModule,
     FormsModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    // MultiSelectModule
   ]
 })
 export class UserManagementModule { }

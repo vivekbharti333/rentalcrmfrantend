@@ -80,7 +80,9 @@ export class AddUserComponent {
     private userManagementService: UserManagementService,
     private messageService: MessageService,
     // private toastr: ToastrService
-  ) {}
+  ) {
+
+  }
 
   
   public selectedValue1 = '';
@@ -191,14 +193,4 @@ export class AddUserComponent {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  show() {
-   
-    this.messageService.add({
-      key: 'myKey1', // Referencing the key
-      severity: 'info',
-      summary: 'Info',
-      detail: 'Updated toast message',
-      life: 5000
-    });
-  }
 }

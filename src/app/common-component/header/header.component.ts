@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit , importProvidersFrom } from '@angular/core';
 import { NavigationStart, Router, Event as RouterEvent } from '@angular/router';
 import { CommonService, SidebarService } from 'src/app/core/core.index';
 import { WebstorgeService } from 'src/app/shared/webstorge.service';
 import { routes } from 'src/app/core/helpers/routes';
+import { CommonComponentService } from '../common-component.service';
 
 @Component({
   selector: 'app-header',
@@ -23,11 +24,14 @@ export class HeaderComponent  {
   page = '';
   last = '';
 
+  public headerDetails:any;
+
   constructor(
     private Router: Router,
     private common: CommonService,
     private sidebar: SidebarService,
-    private webStorage: WebstorgeService
+    private webStorage: WebstorgeService,
+    private commonComponentService: CommonComponentService
   ) {
     this.activePath = this.Router.url.split('/')[2];
     this.Router.events.subscribe((data: RouterEvent) => {
@@ -53,6 +57,10 @@ export class HeaderComponent  {
     });
   }
 
+  ngOnInit(){
+    this.getApplicaionHeaderDetails();
+    
+  }
 
 
   public logout(): void {
@@ -82,4 +90,21 @@ export class HeaderComponent  {
       document.exitFullscreen();
     }
   }
+
+  public getApplicaionHeaderDetails() {
+    this.commonComponentService.getApplicaionHeaderDetails()
+      .subscribe({
+        next: (response: any) => {
+          if (response['responseCode'] == '200') {
+            this.headerDetails = JSON.parse(JSON.stringify(response['payload']));
+            let base = this.headerDetails[''];
+            console.log("jhhjg"+this.headerDetails);
+          } else {
+          }
+        },
+        // error: (error: any) => this.toastr.error('Server Error', '500'),
+      });
+  }
+
+ 
 }

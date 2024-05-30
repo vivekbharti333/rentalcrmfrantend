@@ -19,6 +19,16 @@ export class UserManagementService {
     // this.loginUser = this.authenticationService.getLoginUser();
   }
 
+  doLogin(login: any): Observable<any> {
+    let request: any = {
+      payload: {
+        loginId: login.loginId,
+        password: login.password,
+      }
+    };
+    return  this.http.post<any>(Constant.Site_Url+"doLogin",request);
+  }
+
   getUserDetailsList(): Observable<any> {
     let request: any = {
       payload: {

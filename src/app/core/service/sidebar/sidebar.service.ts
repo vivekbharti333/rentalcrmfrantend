@@ -71,7 +71,7 @@ export class SidebarService {
 
   public sidebarData1 = [
     {
-      tittle: 'Main Menu',
+      tittle: 'Main',
       hasSubRoute: true,
       icon: 'assets/img/icons/menu-icon.svg',
       showSubRoute: false,
@@ -120,8 +120,43 @@ export class SidebarService {
           ],
         },
       ],
-      
     },
+
+    {
+      tittle: 'Setting',
+      hasSubRoute: true,
+      icon: 'assets/img/icons/menu-icon.svg',
+      showSubRoute: false,
+      menu: [
+        {
+          menuValue: 'Setting',
+          hasSubRoute: true,
+          showSubRoute: false,
+          icon: 'grid',
+          base1: 'dashboard',
+
+          subMenus: [
+            {
+              menuValue: 'General Setting',
+              route: routes.generalSettings,
+              permission: 'admindb',
+
+            },
+            {
+              menuValue: 'Company Setting',
+              route: routes.companySettings,
+              permission: 'admindbn',
+            },
+          ],
+        },
+
+       
+      ],
+    },
+
+
+
+    
 
   ];
 

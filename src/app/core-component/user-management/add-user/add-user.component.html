@@ -69,6 +69,7 @@
                <select id="roleType" class="form-control" [(ngModel)]="user.roleType" name="roleType" required>
                 <option class="form-control" *ngFor="let role of roleTypes" [value]="role.name">{{ role.name }}</option>
               </select> 
+              
                <!-- <mat-select [(ngModel)]="selectedValue1" [ngModelOptions]="{standalone: true}"
                 class="select" placeholder="Male">
                 @for (data of selectedList1; track data) {

@@ -9,6 +9,16 @@
             <a [routerLink]="routes.adminDashboard" class="login-logo logo-white">
               <img src="assets/img/logo-white.png" alt="">
             </a>
+
+            <div class="card-body">
+              <p-toast></p-toast>
+              <button type="button" class="btn btn-primary btn-wave" id="liveToastBtn" pButton pRipple
+                  (click)="show()" label="Show">Show live
+                  toast</button>
+                  
+                  </div>
+
+
             <div class="login-userheading">
               <h3>Sign In</h3>
               <h4>Access the Dreamspos panel using your email and passcode.</h4>

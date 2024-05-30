@@ -9,11 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
   declarations: [AppComponent, LoaderComponent],
-  imports: [BrowserModule, FormsModule, AppRoutingModule,MatFormFieldModule, sharedModule, BrowserAnimationsModule, ToastrModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule,MatFormFieldModule, sharedModule, BrowserAnimationsModule, ToastrModule, MultiSelectModule],
   exports: [],
   bootstrap: [AppComponent],
 })
