@@ -17,7 +17,6 @@ export class CommonComponentService {
   getApplicaionHeaderDetails(): Observable<any> {
     let request: any = {
       payload: {
-       
         superadminId: 'MAINADMIN',
       }
     };

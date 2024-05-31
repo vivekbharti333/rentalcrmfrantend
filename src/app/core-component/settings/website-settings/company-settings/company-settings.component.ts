@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarService } from 'src/app/core/core.index';
 import { MessageService } from 'primeng/api';
@@ -18,6 +18,7 @@ export class CompanySettingsComponent {
     private websiteSettingService: WebsiteSettingService
   ) {}
 
+  public applicationDetailsList: any;
 
   public comapany = {
     loginPageWallpaper: '',
@@ -29,6 +30,10 @@ export class CompanySettingsComponent {
     website: '',
     phoneNumber: ''
   }
+
+ngOnInit(){
+  this.getApplicationDetailsList();
+}
 
   loginPageWallpaperBase64(event: any) {
     const selectedFile = event.target.files[0];
@@ -110,6 +115,41 @@ export class CompanySettingsComponent {
       // this.isLoading = false;
   }
 
+
+  public getApplicationDetailsList() {
+    this.websiteSettingService.getApplicationDetailsList()
+      .subscribe({
+        next: (response: any) => {
+          if (response['responseCode'] == '200') {
+            this.applicationDetailsList = JSON.parse(JSON.stringify(response['listPayload']));
+            this.applicationDetailsList = this.applicationDetailsList[0];
+
+            this.setApplicationDetails();
+          } else {
+          }
+        },
+        error: (error: any) =>   this.messageService.add({
+          summary: '500',
+          detail: 'Server Error',
+          styleClass: 'danger-background-popover',
+        })
+      });
+  }
+
+  public setApplicationDetails(){
+
+    alert(this.applicationDetailsList.displayName+" ,, "+ this.applicationDetailsList.loginPageWallpaper,)
+  
+    this.comapany.loginPageWallpaper = this.applicationDetailsList.loginPageWallpaper,
+    this.comapany.loginPageLogo = this.applicationDetailsList.loginPageLogo,
+    this.comapany.ipAddress = this.applicationDetailsList.ipAddress,
+    this.comapany.displayLogo = this.applicationDetailsList.displayLogo,
+    this.comapany.displayName =  this.applicationDetailsList.displayName,
+    this.comapany.emailId = this.applicationDetailsList.emailId,
+    this.comapany.website = this.applicationDetailsList.website,
+    this.comapany.phoneNumber = this.applicationDetailsList.phoneNumber
+    
+  }
 
   isCollapsed: boolean = false;
   toggleCollapse() {

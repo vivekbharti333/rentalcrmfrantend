@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Constant } from 'src/app/core/constant/constants';
+import { CookieService } from 'ngx-cookie-service';
 // import { UserDetails, UserDetailsRequest } from '../interface/user-management';
 // import { AuthenticationService } from './services/authentication-service.service';
 
@@ -14,6 +15,7 @@ export class UserManagementService {
 
   constructor(
     private http: HttpClient,
+    private cookieService: CookieService
     // private authenticationService: AuthenticationService,
   ) {
     // this.loginUser = this.authenticationService.getLoginUser();
@@ -30,6 +32,8 @@ export class UserManagementService {
   }
 
   getUserDetailsList(): Observable<any> {
+
+    this.loginUser = JSON.parse(this.cookieService.get('loginDetails'))
     let request: any = {
       payload: {
         // requestedFor: 'ALL',
@@ -38,10 +42,10 @@ export class UserManagementService {
         // createdBy: this.loginUser['loginId'],
         // superadminId: this.loginUser['superadminId'],
         requestedFor: 'ALL',
-        roleType: 'MAINADMIN',
-        token: '',
-        createdBy: 'MAINADMIN',
-        superadminId: 'MAINADMIN',
+        roleType: this.loginUser['roleType'],
+        token: this.loginUser['token'],
+        createdBy: this.loginUser['loginId'],
+        superadminId: this.loginUser['superadminId'],
       }
     };
     return  this.http.post<any>(Constant.Site_Url+"getUserDetails",request);
@@ -62,6 +66,7 @@ export class UserManagementService {
 
 
   saveUserDetails(user: any): Observable<any> {
+    this.cookieService.get('loginDetails')
     user.firstname
     let request: any = {
       payload: {

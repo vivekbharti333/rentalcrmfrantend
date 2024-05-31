@@ -25,6 +25,7 @@ export class HeaderComponent  {
   last = '';
 
   public headerDetails:any;
+  public displayLogo: any;
 
   constructor(
     private Router: Router,
@@ -92,18 +93,20 @@ export class HeaderComponent  {
   }
 
   public getApplicaionHeaderDetails() {
-    this.commonComponentService.getApplicaionHeaderDetails()
-      .subscribe({
-        next: (response: any) => {
-          if (response['responseCode'] == '200') {
-            this.headerDetails = JSON.parse(JSON.stringify(response['payload']));
-            let base = this.headerDetails[''];
-            console.log("jhhjg"+this.headerDetails);
-          } else {
-          }
-        },
-        // error: (error: any) => this.toastr.error('Server Error', '500'),
-      });
+     this.displayLogo =localStorage.getItem('displayLogo');
+    //  alert("Image : "+this.displayLogo)
+    // this.commonComponentService.getApplicaionHeaderDetails()
+    //   .subscribe({
+    //     next: (response: any) => {
+    //       if (response['responseCode'] == '200') {
+    //         this.headerDetails = JSON.parse(JSON.stringify(response['payload']));
+    //         let base = this.headerDetails[''];
+    //         console.log("jhhjg"+this.headerDetails);
+    //       } else {
+    //       }
+    //     },
+    //     // error: (error: any) => this.toastr.error('Server Error', '500'),
+    //   });
   }
 
  

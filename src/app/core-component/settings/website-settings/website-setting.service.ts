@@ -31,4 +31,14 @@ export class WebsiteSettingService {
     };
     return this.http.post<any>(Constant.Site_Url + "addUpdateApplicationHeader", request);
   }
+
+  getApplicationDetailsList(): Observable<any> {
+    let request: any = {
+      payload: {
+        token: '',
+        superadminId: 'MAINADMIN',
+      }
+    };
+    return this.http.post<any>(Constant.Site_Url + "getApplicationHeaderDetails", request);
+  }
 }
